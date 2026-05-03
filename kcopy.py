@@ -73,13 +73,16 @@ while True:
     
     if witch.collidepoint(mousepos):
                     mx,my=mousepos
-                    witch.centery=my
-                    #witch.centerx=mx
                     if witch.top<100:
                         witch.top=100   
                     if witch.bottom>480:
                         witch.bottom=480                                          
-                    
+                    if  my<witch.centery:
+                          
+                        witch.bottom+=3 
+
+                    if my>witch.centery:
+                          witch.top-=3
       
     if witch.colliderect(goblinn) or witch.colliderect(goblinn1):
             score1-=0.2
