@@ -12,12 +12,21 @@ pygame.mixer.music.play(-1)
 
 
 screen=pygame.display.set_mode((1000,500))
+
 pygame.display.set_caption("Witch in the Jungle")
+
 testfont=pygame.font.Font('font/yoster.ttf',50)
 testfont1=pygame.font.Font('font/yoster.ttf',20)
+testfont2=pygame.font.Font('font/yoster.ttf',20)
 
 
 clock=pygame.time.Clock()
+
+mousepos=pygame.mouse.get_pos()
+mx,my=mousepos
+
+cursor1=pygame.image.load('character/cursor.png').convert_alpha()
+cursor2=pygame.transform.scale(cursor1, (15,20))
 
 goblin1=pygame.image.load('character/goblin.png').convert_alpha()
 goblin=pygame.transform.scale(goblin1, (50,50))
@@ -51,6 +60,7 @@ while True:
         if event.type ==pygame.QUIT:
             pygame.quit()
             sys.exit()
+
     
     screen.blit(background, (0,0))
     screen.blit(score, (410, 50))
@@ -90,7 +100,11 @@ while True:
 
         
     mousepos=pygame.mouse.get_pos()
+    mx,my=mousepos
 
+    pygame.mouse.set_visible(False)
+    cursor=cursor2.get_rect(topleft=(mx,my))
+    screen.blit(cursor2, cursor)
 
     # if witch.collidepoint(mousepos):
     #             print(f"Mouse touching witch! Current top = {witch.top}")
@@ -118,12 +132,13 @@ while True:
             # print("Score added ")
             score1+=2
 
-    # elif witch.right-goblinn1.left<80 and witch.right-goblinn1.left>=0 and not witch.colliderect(goblinn1):
-    #         # print("Score added ")
-    #         score1+=2
+    secs=int(pygame.time.get_ticks()/1000)
+    sec=testfont2.render(f"Seconds: {secs}", False, 'wheat')
+    screen.blit(sec, (800,15))
   
     score2=testfont.render(f"{score1}", False, 'gold')
     screen.blit(score2, (615,50))
+
     pygame.display.update()
     clock.tick(60)
 

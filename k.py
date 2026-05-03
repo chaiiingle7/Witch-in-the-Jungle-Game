@@ -19,6 +19,12 @@ testfont1=pygame.font.Font('font/yoster.ttf',20)
 
 clock=pygame.time.Clock()
 
+mousepos=pygame.mouse.get_pos()
+mx,my=mousepos
+
+cursor1=pygame.image.load('character/cursor.png').convert_alpha()
+cursor2=pygame.transform.scale(cursor1, (15,20))
+
 goblin1=pygame.image.load('character/goblin.png').convert_alpha()
 goblin=pygame.transform.scale(goblin1, (50,50))
 
@@ -62,7 +68,7 @@ while True:
         witch.left=x       
     screen.blit(character, witch) 
 
-    goblinn.right -= 2
+    goblinn.right -= 1.6
     if goblinn.right<=-120:
         goblinn.right=1100
     screen.blit(goblin, goblinn)
@@ -72,7 +78,7 @@ while True:
         goblinn1.right=1150
     screen.blit(goblin3, goblinn1)
 
-    goblinn2.right-=2.4
+    goblinn2.right-=1.2
     if goblinn2.right<=-150:
         goblinn2.right=1150
     screen.blit(goblin3, goblinn2)
@@ -88,8 +94,12 @@ while True:
     screen.blit(goblin3, goblinn5)
 
 
-        
     mousepos=pygame.mouse.get_pos()
+    mx,my=mousepos
+
+    pygame.mouse.set_visible(False)
+    cursor=cursor2.get_rect(topleft=(mx,my))
+    screen.blit(cursor2, cursor)
 
 
     # if witch.collidepoint(mousepos):
