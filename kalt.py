@@ -95,14 +95,20 @@ while True:
     # if witch.collidepoint(mousepos):
     #             print(f"Mouse touching witch! Current top = {witch.top}")
     
-    if witch.collidepoint(mousepos):
-                    mx,my=mousepos
-                    witch.centery=my
-                    #witch.centerx=mx
-                    if witch.top<100:
-                        witch.top=100   
-                    if witch.bottom>480:
-                        witch.bottom=480                                          
+    # if witch.collidepoint(mousepos):
+    #                 mx,my=mousepos
+    #                 witch.centery=my
+    #                 #witch.centerx=mx
+    #                 if witch.top<100:
+    #                     witch.top=100   
+    #                 if witch.bottom>480:
+    #                     witch.bottom=480           
+
+    keys=pygame.key.get_pressed()
+    if keys[pygame.K_w]:
+         witch.centery-=1.5
+    elif keys[pygame.K_s]:
+         witch.centery+=1.5                              
                     
     gob= [goblinn, goblinn1, goblinn2, goblinn4, goblinn5]
     if any (witch.colliderect(g) for g in gob):
